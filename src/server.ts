@@ -14,7 +14,7 @@ process.on('uncaughtException', (error: Error) => {
 });
 
 async function connectDB() {
-  await mongoose.connect(config.mongodbUri as string);
+  await mongoose.connect(config.mongodb_uri as string);
   console.log('🛢 Database connection successful');
 }
 
