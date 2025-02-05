@@ -11,10 +11,12 @@ const createBlog = async (
   payload: TCreateBlog,
   userId: Types.ObjectId,
 ): Promise<TBlog> => {
-  const result = await Blog.create({
-    ...payload,
-    author: userId,
-  });
+  const result = await (
+    await Blog.create({
+      ...payload,
+      author: userId,
+    })
+  ).populate({ path: 'author', select: '-__v' });
 
   return result;
 };
@@ -27,10 +29,12 @@ const updateBlog = async (
 ): Promise<TBlog | null> => {
   const blog = await Blog.findById(id);
 
+  // Check if blog exists
   if (!blog) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog not found');
   }
 
+  // Check if user is admin or author of the blog
   if (
     role !== USER_ROLE.ADMIN &&
     blog.author.toString() !== userId.toString()
@@ -43,7 +47,7 @@ const updateBlog = async (
 
   const result = await Blog.findByIdAndUpdate(id, payload, {
     new: true,
-  });
+  }).populate({ path: 'author', select: '-__v' });
 
   return result;
 };
@@ -73,7 +77,10 @@ const deleteBlog = async (
 };
 
 const getAllBlogs = async (query: Record<string, unknown>) => {
-  const blogQuery = new QueryBuilder(Blog.find().populate('author'), query);
+  const blogQuery = new QueryBuilder(
+    Blog.find().populate({ path: 'author', select: '-__v' }),
+    query,
+  );
 
   const result = await blogQuery
     .search(BLOG_SEARCHABLE_FIELDS)

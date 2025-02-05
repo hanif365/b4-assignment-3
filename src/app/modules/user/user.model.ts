@@ -35,7 +35,7 @@ const userSchema = new Schema<TUser>(
   },
 );
 
-// Hash password before saving
+// Make hash password before saving using bcrypt
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, config.bcrypt_salt_rounds);
@@ -43,7 +43,7 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Method to check password
+// Static method to check password is correct or not
 userSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string,

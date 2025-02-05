@@ -7,10 +7,10 @@ import { USER_ROLE } from '../user/user.constant';
 
 const router = express.Router();
 
-// Public routes
+// Public routes to get all blogs
 router.get('/', BlogController.getAllBlogs);
 
-// Protected routes
+// Protected routes to create blog
 router.post(
   '/',
   auth(USER_ROLE.USER),
@@ -18,6 +18,7 @@ router.post(
   BlogController.createBlog,
 );
 
+// Protected routes to update blog
 router.patch(
   '/:id',
   auth(USER_ROLE.USER),
@@ -25,6 +26,7 @@ router.patch(
   BlogController.updateBlog,
 );
 
+// Protected routes to delete blog
 router.delete('/:id', auth(USER_ROLE.USER), BlogController.deleteBlog);
 
 export default router;

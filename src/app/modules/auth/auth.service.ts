@@ -22,7 +22,7 @@ const registerUser = async (
   // Create user
   const user = await User.create(payload);
 
-  // Return user without password
+  // Return user without password field for security reasons
   const responseData: TRegisterResponse = {
     _id: user._id,
     name: user.name,
@@ -46,7 +46,7 @@ const loginUser = async (payload: TLoginUser): Promise<TLoginResponse> => {
     throw new AppError(StatusCodes.FORBIDDEN, 'Your account has been blocked');
   }
 
-  // Check password
+  // Check password is correct or not
   const isPasswordMatched = await User.isPasswordMatched(
     password,
     user.password,
@@ -60,6 +60,7 @@ const loginUser = async (payload: TLoginUser): Promise<TLoginResponse> => {
     userId: user._id,
     role: user.role,
   };
+
   // Generate token
   const accessToken = createToken(
     jwtPayload,
@@ -67,6 +68,7 @@ const loginUser = async (payload: TLoginUser): Promise<TLoginResponse> => {
     config.jwt_access_expires_in as string,
   );
 
+  // here we return access token as token
   return {
     token: accessToken,
   };

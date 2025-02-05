@@ -5,12 +5,14 @@ import { AuthValidation } from './auth.validation';
 
 const router = express.Router();
 
+// Public routes to register user
 router.post(
   '/register',
   validateRequest(AuthValidation.registerValidationSchema),
   AuthController.registerUser,
 );
 
+// Public routes to login user
 router.post(
   '/login',
   validateRequest(AuthValidation.loginValidationSchema),

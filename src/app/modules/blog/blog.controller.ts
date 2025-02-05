@@ -43,7 +43,6 @@ const deleteBlog = catchAsync(async (req: Request, res: Response) => {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'Blog deleted successfully',
-    data: null,
   });
 });
 
