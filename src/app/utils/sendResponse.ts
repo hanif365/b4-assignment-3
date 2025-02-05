@@ -5,7 +5,7 @@ type TSendResponse<T> = {
   statusCode: StatusCodes;
   success: boolean;
   message?: string | null;
-  data: T;
+  data?: T;
 };
 
 const sendResponse = <T>(res: Response, data: TSendResponse<T>) => {
