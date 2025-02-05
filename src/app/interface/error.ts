@@ -1,5 +1,5 @@
 export type TErrorDetails = {
-  path: string | number;
+  path?: string | number;
   details: string;
 }[];
 

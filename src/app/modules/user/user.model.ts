@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 import { TUser, TUserModel } from './user.interface';
 import { USER_ROLE } from './user.constant';
 import bcrypt from 'bcrypt';
+import config from '../../config';
 
 const userSchema = new Schema<TUser>(
   {
@@ -37,7 +38,7 @@ const userSchema = new Schema<TUser>(
 // Hash password before saving
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
-    this.password = await bcrypt.hash(this.password, 12);
+    this.password = await bcrypt.hash(this.password, config.bcrypt_salt_rounds);
   }
   next();
 });
@@ -51,4 +52,4 @@ userSchema.statics.isPasswordMatched = async function (
 };
 
 const User = model<TUser, TUserModel>('User', userSchema);
-export default User; 
+export default User;

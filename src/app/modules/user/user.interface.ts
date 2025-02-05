@@ -11,7 +11,7 @@ export type TUser = {
   isBlocked: boolean;
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
 export type TUserModel = Model<TUser> & {
   isPasswordMatched(
