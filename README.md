@@ -86,8 +86,8 @@ DELETE /api/admin/blogs/:id            # Delete any blog
 ### 🔧 Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd blog-pedia-api
+   git clone https://github.com/hanif365/b4-assignment-3.git
+   cd b4-assignment-3
    ```
 2. Install dependencies:
    ```bash
