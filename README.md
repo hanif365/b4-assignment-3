@@ -53,29 +53,6 @@
 - **ESLint & Prettier** for code quality
 
 ---
-## 📌 API Endpoints
-
-### 🔑 Authentication
-```http
-POST /api/auth/register   # Register a new user
-POST /api/auth/login      # Login user
-```
-
-### 📝 Blog Management
-```http
-GET /api/blogs            # Get all blogs (Public)
-POST /api/blogs           # Create a new blog (Protected)
-PATCH /api/blogs/:id      # Update a blog (Protected)
-DELETE /api/blogs/:id     # Delete a blog (Protected)
-```
-
-### 🛡️ Admin Routes
-```http
-PATCH /api/admin/users/:userId/block   # Block a user
-DELETE /api/admin/blogs/:id            # Delete any blog
-```
-
----
 ## 🚀 Getting Started
 
 ### ✅ Prerequisites
@@ -87,6 +64,7 @@ DELETE /api/admin/blogs/:id            # Delete any blog
 1. Clone the repository:
    ```bash
    git clone https://github.com/hanif365/b4-assignment-3.git
+   
    cd b4-assignment-3
    ```
 2. Install dependencies:
@@ -128,32 +106,26 @@ npm start
 ```
 
 ---
-## 📜 API Documentation
+## 📌 API Endpoints
 
-### 🔍 Search, Sort & Filter
-The public blog API (`GET /api/blogs`) supports:
-
-- **Search:** `?search=keyword`
-- **Sort:** `?sortBy=field&sortOrder=asc|desc`
-- **Filter:** `?filter=authorId`
-
-**Example:**
+### 🔑 Authentication
 ```http
-GET /api/blogs?search=technology&sortBy=createdAt&sortOrder=desc
+POST /api/auth/register   # Register a new user
+POST /api/auth/login      # Login user
 ```
 
----
-## ❌ Error Responses
-All error responses follow this format:
-```json
-{
-  "success": false,
-  "message": "Error message",
-  "statusCode": 400,
-  "error": {
-    "details": "Error details"
-  }
-}
+### 📝 Blog Management
+```http
+GET /api/blogs            # Get all blogs (Public)
+POST /api/blogs           # Create a new blog (Protected)
+PATCH /api/blogs/:id      # Update a blog (Protected)
+DELETE /api/blogs/:id     # Delete a blog (Protected)
+```
+
+### 🛡️ Admin Routes
+```http
+PATCH /api/admin/users/:userId/block   # Block a user
+DELETE /api/admin/blogs/:id            # Delete any blog
 ```
 
 ---
