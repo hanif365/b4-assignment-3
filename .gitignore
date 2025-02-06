@@ -1,5 +1,4 @@
 node_modules
 .env
 info.txt
-src/scripts/createAdmin.ts 
-dist 
+dist

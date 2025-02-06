@@ -15,7 +15,7 @@ app.use(cors());
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Welcome to our Blog Pedia API',
-    version: '0.0.1',
+    version: '1.0.0',
     success: true,
   });
 });
